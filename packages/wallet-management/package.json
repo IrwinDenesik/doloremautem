@@ -1,0 +1,69 @@
+{
+  "name": "@lifi/wallet-management",
+  "version": "1.1.10",
+  "description": "LI.FI Wallet Management solution.",
+  "sideEffects": false,
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./index.d.ts",
+  "scripts": {
+    "watch": "tsc -w -p ./tsconfig.json",
+    "build": "tsc --build --clean && tsc --build && tsc --build tsconfig.cjs.json && yarn build:copy-files",
+    "build:copy-files": "node ../../scripts/copy-files.js",
+    "postbuild": "cpy 'src/**/*' '!src/**/*.ts*' build && cpy 'src/**/*' '!src/**/*.ts*' build/cjs",
+    "pre-commit": "lint-staged",
+    "lint": "eslint --ext .tsx --ext .ts ./src",
+    "lint:fix": "eslint --ext .tsx --ext .ts ./src --fix",
+    "prettier:fix": "prettier --write ./src/."
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "yarn run lint:fix",
+      "yarn run prettier:fix"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Adrian Weniger <adrian@li.finance>",
+  "homepage": "https://github.com/lifinance/wallet-management",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lifinance/wallet-management.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lifinance/wallet-management/issues"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "wallet",
+    "wallet-management",
+    "metamask",
+    "wallet-connect",
+    "coinbase",
+    "eip1193",
+    "ethereum",
+    "ENS",
+    "web3",
+    "blockchain",
+    "lifi"
+  ],
+  "dependencies": {
+    "@ethersproject/experimental": "^5.7.0",
+    "@ethersproject/providers": "^5.7.1",
+    "@walletconnect/ethereum-provider": "^1.8.0",
+    "@web3-react/coinbase-wallet": "^8.0.34-beta.0",
+    "@web3-react/core": "^8.0.35-beta.0",
+    "@web3-react/eip1193": "^8.0.26-beta.0",
+    "@web3-react/empty": "^8.0.20-beta.0",
+    "@web3-react/metamask": "^8.0.28-beta.0",
+    "@web3-react/network": "^8.0.27-beta.0",
+    "@web3-react/types": "^8.0.20-beta.0",
+    "@web3-react/url": "^8.0.25-beta.0",
+    "@web3-react/walletconnect": "^8.0.35-beta.0",
+    "react": "^18.2.0"
+  },
+  "eslintConfig": {
+    "extends": "../../.eslintrc"
+  }
+}

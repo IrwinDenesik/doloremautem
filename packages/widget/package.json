@@ -1,0 +1,93 @@
+{
+  "name": "@lifi/widget",
+  "version": "1.20.0",
+  "description": "LI.FI Widget for cross-chain bridging and swapping. It will drive your multi-chain strategy and attract new users from everywhere.",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./index.d.ts",
+  "scripts": {
+    "watch": "tsc -w -p ./tsconfig.json",
+    "build": "tsc --build --clean && yarn build:version && tsc --build && tsc --build tsconfig.cjs.json && yarn build:copy-files",
+    "build:copy-files": "node ../../scripts/copy-files.js",
+    "build:version": "node ../../scripts/version.js",
+    "postbuild": "cpy 'src/**/*' '!src/**/*.ts*' build && cpy 'src/**/*' '!src/**/*.ts*' build/cjs",
+    "pre-commit": "lint-staged",
+    "lint": "eslint --ext .tsx --ext .ts ./src",
+    "lint:fix": "eslint --ext .tsx --ext .ts ./src --fix",
+    "prettier:fix": "prettier --write ./src/."
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "yarn run lint:fix",
+      "yarn run prettier:fix"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Eugene Chybisov <eugene@li.finance>",
+  "homepage": "https://github.com/lifinance/widget",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lifinance/widget.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lifinance/widget/issues"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "widget",
+    "lifi-widget",
+    "bridge",
+    "swap",
+    "cross-chain",
+    "multi-chain",
+    "metamask",
+    "ethereum",
+    "web3",
+    "lifi"
+  ],
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@ethersproject/address": "^5.7.0",
+    "@ethersproject/experimental": "^5.7.0",
+    "@ethersproject/providers": "^5.7.1",
+    "@lifi/sdk": "^1.6.0",
+    "@lifi/wallet-management": "^1.1.10",
+    "@mui/icons-material": "^5.10.6",
+    "@mui/lab": "^5.0.0-alpha.102",
+    "@mui/material": "^5.10.8",
+    "@sentry/integrations": "^7.14.2",
+    "@sentry/react": "^7.14.2",
+    "@sentry/tracing": "^7.14.2",
+    "@tanstack/react-query": "^4.10.3",
+    "@tanstack/react-virtual": "^3.0.0-beta.18",
+    "big.js": "^6.2.1",
+    "i18next": "^21.10.0",
+    "immer": "^9.0.15",
+    "microdiff": "^1.3.1",
+    "mitt": "^3.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.37.0",
+    "react-i18next": "^11.18.6",
+    "react-router-dom": "^6.4.2",
+    "react-timer-hook": "^3.0.5",
+    "zustand": "^4.1.2"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  },
+  "eslintConfig": {
+    "extends": "../../.eslintrc"
+  },
+  "sideEffects": false
+}
